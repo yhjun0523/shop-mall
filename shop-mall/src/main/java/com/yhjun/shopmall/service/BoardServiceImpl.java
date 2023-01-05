@@ -11,6 +11,7 @@ import com.yhjun.shopmall.vo.BoardVO;
 public class BoardServiceImpl implements BoardService {
     private final BoardMapper boardMapper = null;
     
+    @Override
     public List<BoardVO> getBoardList() {
         return boardMapper.getBoardList();
     }

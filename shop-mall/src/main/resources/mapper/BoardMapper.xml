@@ -4,8 +4,7 @@
 <mapper namespace="com.yhjun.shopmall.mapper.BoardMapper">
 
     <select id="getBoardList" resultType="com.yhjun.shopmall.vo.BoardVO">
-        SELECT *
-        FROM BOARD
+        SELECT * FROM BOARD
     </select>
 
 </mapper>
