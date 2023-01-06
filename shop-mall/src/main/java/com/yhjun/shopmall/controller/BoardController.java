@@ -2,6 +2,8 @@ package com.yhjun.shopmall.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,11 +13,12 @@ import com.yhjun.shopmall.vo.BoardVO;
 @RestController
 public class BoardController {
 
-    private final BoardService boardSevice = null;
+    @Autowired
+    private BoardService boardSevice;
 
     @GetMapping("/board")
     public List<BoardVO> getBoard() {
-
         return boardSevice.getBoardList();
+        
     }
 }

@@ -3,15 +3,16 @@ import "./App.css";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [message, setMessage] = useState([]);
+  const [seq, setSeq] = useState();
+  const [writer, setWriter] = useState();
 
   useEffect(() => {
-    fetch("/helloworld")
-      .then((response) => {
+    fetch("/board")
+      .then(response => {
         return response.json();
       })
-      .then(function (data) {
-        setMessage(data);
+      .then(seq => {
+        setSeq(seq);
       });
   }, []);
 
@@ -30,11 +31,9 @@ function App() {
         >
           Learn React
         </a>
-        <ul>
-          {message.map((text, index) => (
-            <li key={`${index}-${text}`}>{text}</li>
-          ))}
-        </ul>
+        <p>
+          {seq}
+        </p>
       </header>
     </div>
   );
