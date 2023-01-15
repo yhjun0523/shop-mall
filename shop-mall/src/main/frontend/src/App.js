@@ -1,20 +1,16 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
-  const [seq, setSeq] = useState();
-  const [writer, setWriter] = useState();
+  const [board, setBoard] = useState({});
 
   useEffect(() => {
-    fetch("/board")
-      .then(response => {
-        return response.json();
-      })
-      .then(seq => {
-        setSeq(seq);
-      });
-  }, []);
+    axios.get("/board").then((response) => {
+      setBoard(response.data);
+    });
+  });
 
   return (
     <div className="App">
@@ -31,9 +27,7 @@ function App() {
         >
           Learn React
         </a>
-        <p>
-          {seq}
-        </p>
+        {/* {console.log(board.title)} */}
       </header>
     </div>
   );
