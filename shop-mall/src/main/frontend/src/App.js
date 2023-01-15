@@ -10,7 +10,7 @@ function App() {
     axios.get("/board").then((response) => {
       setBoard(response.data);
     });
-  });
+  }, []);
 
   return (
     <div className="App">
@@ -27,7 +27,8 @@ function App() {
         >
           Learn React
         </a>
-        {/* {console.log(board.title)} */}
+        {console.log(board[0])}
+        <p>{JSON.stringify(board[0])}</p>
       </header>
     </div>
   );
