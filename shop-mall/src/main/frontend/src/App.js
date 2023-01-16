@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function App() {
-  const [board, setBoard] = useState({});
+  const [board, setBoard] = useState(null);
 
   useEffect(() => {
     axios.get("/board").then((response) => {
@@ -12,26 +12,35 @@ function App() {
     });
   }, []);
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        {console.log(board[0])}
-        <p>{JSON.stringify(board[0])}</p>
-      </header>
-    </div>
-  );
+  if (board) {
+    const boardList = () => {
+      const newArr = [];
+      for (let i = 0; i < board.length; i++) {
+        newArr.push(
+          <p key={board[i].seq}>
+            {board[i].seq}&nbsp;
+            {board[i].title}&nbsp;
+            {board[i].writer}&nbsp;
+            {board[i].content}&nbsp;
+            {board[i].regDate}
+            <br />
+          </p>
+        );
+      }
+      return newArr;
+    };
+
+    return (
+      <div className="App">
+        <header className="App-header">
+          {console.log(board)}
+          <div>{boardList()}</div>
+        </header>
+      </div>
+    );
+  } else {
+    return null;
+  }
 }
 
 export default App;
