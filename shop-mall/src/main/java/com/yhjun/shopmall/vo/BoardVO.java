@@ -1,7 +1,5 @@
 package com.yhjun.shopmall.vo;
 
-import java.util.Date;
-
 public class BoardVO {
     private int seq;
 
@@ -11,7 +9,7 @@ public class BoardVO {
 
     private String content;
 
-    private Date regDate;
+    private String regDate;
 
     private int cnt;
 
@@ -47,11 +45,11 @@ public class BoardVO {
         this.content = content;
     }
 
-    public Date getRegDate() {
+    public String getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(Date regDate) {
+    public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
 

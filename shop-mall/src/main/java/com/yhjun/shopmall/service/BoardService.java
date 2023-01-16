@@ -6,4 +6,6 @@ import com.yhjun.shopmall.vo.BoardVO;
 
 public interface BoardService {
     public List<BoardVO> getBoardList();
+    
+    public List<BoardVO> setBoard();
 }

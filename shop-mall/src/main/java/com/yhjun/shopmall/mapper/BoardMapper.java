@@ -12,4 +12,6 @@ import com.yhjun.shopmall.vo.BoardVO;
 public interface BoardMapper {
 
     List<BoardVO> getBoardList();
+
+    List<BoardVO> setBoard();
 }

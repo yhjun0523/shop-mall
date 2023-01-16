@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yhjun.shopmall.mapper.BoardMapper">
-
-    <select id="getBoardList" resultType="BoardVO">
-        SELECT * FROM BOARD
+	<select id="getBoardList" resultType="BoardVO">
+        SELECT SEQ,
+               WRITER,
+               TITLE,
+               CONTENT,
+               DATE_FORMAT(REGDATE, '%Y-%m-%d') REGDATE,
+               CNT
+        FROM BOARD
     </select>
-
+	<insert id="setBoard">
+		INSERT INTO board (
+		`SEQ`,
+		`TITLE`,
+		`WRITER`,
+		`CONTENT`,
+		`REGDATE`,
+		`CNT`
+		)
+		VALUES (
+		#{seq},
+		#{title},
+		#{writer},
+		#{content},
+		#{regDate},
+		#{cnt}
+		);
+	</insert>
 </mapper>
