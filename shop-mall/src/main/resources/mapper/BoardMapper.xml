@@ -11,7 +11,7 @@
         FROM BOARD
     </select>
 	<insert id="setBoard">
-		INSERT INTO board (
+		INSERT INTO BOARD (
 		`SEQ`,
 		`TITLE`,
 		`WRITER`,
@@ -20,12 +20,12 @@
 		`CNT`
 		)
 		VALUES (
-		#{seq},
+		(SELECT COALESCE(SEQ, 0) + 1 FROM (SELECT MAX(SEQ) AS SEQ FROM BOARD) BOARD),
 		#{title},
 		#{writer},
 		#{content},
-		#{regDate},
-		#{cnt}
+		NOW(),
+		0
 		);
 	</insert>
 </mapper>

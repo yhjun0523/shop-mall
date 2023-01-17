@@ -12,7 +12,7 @@ function Board() {
   const [board, setBoard] = useState(null);
 
   useEffect(() => {
-    axios.get("/board").then((response) => {
+    axios.get("/board/read.do").then((response) => {
       setBoard(response.data);
     });
   }, []);

@@ -13,5 +13,5 @@ public interface BoardMapper {
 
     List<BoardVO> getBoardList();
 
-    List<BoardVO> setBoard();
+    void setBoard(BoardVO vo);
 }

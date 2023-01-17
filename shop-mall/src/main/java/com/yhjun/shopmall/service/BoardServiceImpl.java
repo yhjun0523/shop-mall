@@ -20,7 +20,7 @@ public class BoardServiceImpl implements BoardService {
     }
     
     @Override
-    public List<BoardVO> setBoard() {
-        return boardMapper.setBoard();
+    public void setBoard(BoardVO vo) {
+        boardMapper.setBoard(vo);
     }
 }

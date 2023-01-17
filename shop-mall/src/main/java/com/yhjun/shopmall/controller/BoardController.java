@@ -16,13 +16,13 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
 
-    @GetMapping("/board/read")
+    @GetMapping("/board/read.do")
     public List<BoardVO> getBoard() {
         return boardService.getBoardList();
     }
 
-    @PostMapping("board/write")
-    public List<BoardVO> setBoard() {
-        return boardService.setBoard();
+    @PostMapping("board/write.do")
+    public void setBoard(BoardVO vo) {
+        boardService.setBoard(vo);
     }
 }
