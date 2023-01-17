@@ -1,8 +1,8 @@
-package com.yhjun.shopmall.service;
+package com.yhjun.shopmall.board.service;
 
 import java.util.List;
 
-import com.yhjun.shopmall.vo.BoardVO;
+import com.yhjun.shopmall.board.vo.BoardVO;
 
 public interface BoardService {
     public List<BoardVO> getBoardList();

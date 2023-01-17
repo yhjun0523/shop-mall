@@ -1,4 +1,4 @@
-package com.yhjun.shopmall.vo;
+package com.yhjun.shopmall.board.vo;
 
 public class BoardVO {
     private int seq;

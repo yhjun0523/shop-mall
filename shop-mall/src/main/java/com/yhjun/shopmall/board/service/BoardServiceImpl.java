@@ -1,12 +1,12 @@
-package com.yhjun.shopmall.service;
+package com.yhjun.shopmall.board.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.yhjun.shopmall.mapper.BoardMapper;
-import com.yhjun.shopmall.vo.BoardVO;
+import com.yhjun.shopmall.board.mapper.BoardMapper;
+import com.yhjun.shopmall.board.vo.BoardVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {

@@ -1,4 +1,4 @@
-package com.yhjun.shopmall.controller;
+package com.yhjun.shopmall.board.controller;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yhjun.shopmall.service.BoardService;
-import com.yhjun.shopmall.vo.BoardVO;
+import com.yhjun.shopmall.board.service.BoardService;
+import com.yhjun.shopmall.board.vo.BoardVO;
 
 @RestController
 public class BoardController {
