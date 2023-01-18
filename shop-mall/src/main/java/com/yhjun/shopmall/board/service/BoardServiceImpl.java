@@ -23,4 +23,9 @@ public class BoardServiceImpl implements BoardService {
     public void setBoard(BoardVO vo) {
         boardMapper.setBoard(vo);
     }
+    
+    @Override
+    public BoardVO getBoardDetail(BoardVO vo) {
+        return boardMapper.getBoardDetail(vo);
+    }
 }

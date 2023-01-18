@@ -17,12 +17,17 @@ public class BoardController {
     private BoardService boardService;
 
     @GetMapping("/board/read.do")
-    public List<BoardVO> getBoard() {
+    public List<BoardVO> getBoardList() {
         return boardService.getBoardList();
     }
 
-    @PostMapping("board/write.do")
+    @PostMapping("/board/write.do")
     public void setBoard(BoardVO vo) {
         boardService.setBoard(vo);
+    }
+    
+    @PostMapping("/board/readDetail.do/{seq}")
+    public BoardVO getBoardDetail(BoardVO vo) {
+        return boardService.getBoardDetail(vo);
     }
 }

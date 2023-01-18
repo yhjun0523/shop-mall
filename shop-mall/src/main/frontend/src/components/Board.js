@@ -7,6 +7,7 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import { Link, useNavigate } from "react-router-dom";
 
 function Board() {
   const [board, setBoard] = useState(null);
@@ -16,6 +17,12 @@ function Board() {
       setBoard(response.data);
     });
   }, []);
+
+  const writePage = useNavigate();
+
+  function movePage() {
+    writePage("/board/write");
+  }
 
   if (board) {
     return (
@@ -37,7 +44,11 @@ function Board() {
                 <TableRow key={boardList.seq}>
                   <TableCell>{boardList.seq}</TableCell>
                   <TableCell>{boardList.writer}</TableCell>
-                  <TableCell>{boardList.title}</TableCell>
+                  <TableCell>
+                    <Link to={`/board/boardDetail/${boardList.seq}`}>
+                      {boardList.title}
+                    </Link>
+                  </TableCell>
                   <TableCell>{boardList.regDate}</TableCell>
                   <TableCell align="right">{boardList.cnt}</TableCell>
                 </TableRow>
@@ -47,7 +58,9 @@ function Board() {
         </React.Fragment>
         {console.log(board)}
         <br />
-        <Button variant="contained">Hello World</Button>
+        <Button variant="contained" onClick={movePage}>
+          Write
+        </Button>
       </div>
     );
   } else {

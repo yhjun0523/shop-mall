@@ -1,35 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-function BoardWrite() {
-  const [board, setBoard] = React.useState({
+function BoardDetail() {
+  const { seq } = useParams();
+
+  const [board, setBoard] = useState({
     writer: "",
     title: "",
     content: "",
   });
 
-  const onClick = async () => {
-    await axios({
-      method: "post",
-      url: "/board/write.do",
-      data: board,
-      headers: { "Content-Type": "multipart/form-data" },
-    }).then((res) => {
-      console.log(res);
-    });
-  };
-
-  const onChange = (event) => {
-    setBoard({
-      ...board,
-      [event.target.name]: event.target.value,
-    });
-  };
+  useEffect(() => {
+    async function getBoardDetail() {
+      await axios({
+        method: "post",
+        url: "/board/readDetail.do/" + seq,
+      }).then((res) => {
+        console.log(res);
+        console.log(seq);
+        setBoard(res.data);
+      });
+    }
+    getBoardDetail();
+  }, []);
 
   const listPage = useNavigate();
 
@@ -49,8 +47,9 @@ function BoardWrite() {
               required
               id="writer"
               name="writer"
-              onChange={onChange}
-              label="Required"
+              label="Writer"
+              multiline
+              defaultValue={board.writer}
             />
           </Grid>
           <Grid item xs={12}>
@@ -58,8 +57,9 @@ function BoardWrite() {
               required
               id="title"
               name="title"
-              onChange={onChange}
-              label="Required"
+              label="Title"
+              multiline
+              defaultValue={board.title}
             />
           </Grid>
           <Grid item xs={12}>
@@ -68,14 +68,11 @@ function BoardWrite() {
               name="content"
               label="Content"
               multiline
-              onChange={onChange}
+              defaultValue={board.content}
               rows={4}
             />
           </Grid>
           <Grid item xs={12}>
-            <Button variant="contained" onClick={onClick}>
-              OK
-            </Button>
             <Button variant="contained" onClick={movePage}>
               Return
             </Button>
@@ -86,4 +83,4 @@ function BoardWrite() {
   );
 }
 
-export default BoardWrite;
+export default BoardDetail;

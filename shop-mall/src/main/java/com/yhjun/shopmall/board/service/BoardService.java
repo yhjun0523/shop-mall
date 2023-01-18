@@ -8,4 +8,6 @@ public interface BoardService {
     public List<BoardVO> getBoardList();
     
     public void setBoard(BoardVO vo);
+    
+    public BoardVO getBoardDetail(BoardVO vo);
 }

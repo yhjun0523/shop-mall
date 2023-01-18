@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yhjun.shopmall.mapper.BoardMapper">
+<mapper namespace="com.yhjun.shopmall.board.mapper.BoardMapper">
 	<select id="getBoardList" resultType="BoardVO">
         SELECT SEQ,
                WRITER,
@@ -9,23 +9,34 @@
                DATE_FORMAT(REGDATE, '%Y-%m-%d') REGDATE,
                CNT
         FROM BOARD
+        ORDER BY SEQ DESC
     </select>
 	<insert id="setBoard">
 		INSERT INTO BOARD (
-		`SEQ`,
-		`TITLE`,
-		`WRITER`,
-		`CONTENT`,
-		`REGDATE`,
-		`CNT`
+		                  `SEQ`,
+		                  `TITLE`,
+		                  `WRITER`,
+		                  `CONTENT`,
+		                  `REGDATE`,
+		                  `CNT`
 		)
 		VALUES (
-		(SELECT COALESCE(SEQ, 0) + 1 FROM (SELECT MAX(SEQ) AS SEQ FROM BOARD) BOARD),
-		#{title},
-		#{writer},
-		#{content},
-		NOW(),
-		0
+		       (SELECT COALESCE(SEQ, 0) + 1 FROM (SELECT MAX(SEQ) AS SEQ FROM BOARD) BOARD),
+		       #{title},
+		       #{writer},
+		       #{content},
+		       NOW(),
+		       0
 		);
 	</insert>
+	<select id="getBoardDetail" resultType="BoardVO">
+        SELECT SEQ,
+               WRITER,
+               TITLE,
+               CONTENT,
+               DATE_FORMAT(REGDATE, '%Y-%m-%d') REGDATE,
+               CNT
+        FROM BOARD
+        WHERE SEQ = #{seq}
+    </select>
 </mapper>
