@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -7,7 +7,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function BoardWrite() {
-  const [board, setBoard] = React.useState({
+  const [board, setBoard] = useState({
     writer: "",
     title: "",
     content: "",

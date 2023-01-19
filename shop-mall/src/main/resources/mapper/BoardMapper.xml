@@ -39,4 +39,14 @@
         FROM BOARD
         WHERE SEQ = #{seq}
     </select>
+	<delete id="deleteBoard">
+        DELETE FROM BOARD
+        WHERE SEQ = #{seq}
+    </delete>
+	<update id="updateBoard">
+		UPDATE BOARD
+		SET TITLE = #{title},
+		    CONTENT = #{content}
+		WHERE SEQ = #{seq}
+	</update>
 </mapper>

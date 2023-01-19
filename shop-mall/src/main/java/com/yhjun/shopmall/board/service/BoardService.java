@@ -10,4 +10,8 @@ public interface BoardService {
     public void setBoard(BoardVO vo);
     
     public BoardVO getBoardDetail(BoardVO vo);
+    
+    public void deleteBoard(BoardVO vo);
+    
+    public void updateBoard(BoardVO vo);
 }

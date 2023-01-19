@@ -3,8 +3,10 @@ package com.yhjun.shopmall.board.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yhjun.shopmall.board.service.BoardService;
@@ -25,9 +27,19 @@ public class BoardController {
     public void setBoard(BoardVO vo) {
         boardService.setBoard(vo);
     }
-    
+
     @PostMapping("/board/readDetail.do/{seq}")
     public BoardVO getBoardDetail(BoardVO vo) {
         return boardService.getBoardDetail(vo);
+    }
+
+    @DeleteMapping("/board/delete.do/{seq}")
+    public void deleteBoard(BoardVO vo) {
+        boardService.deleteBoard(vo);
+    }
+
+    @PutMapping("/board/update.do/")
+    public void updateBoard(BoardVO vo) {
+        boardService.updateBoard(vo);
     }
 }
