@@ -5,6 +5,8 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./Style.css";
+import { Container } from "@mui/system";
 
 function BoardWrite() {
   const [board, setBoard] = useState({
@@ -31,57 +33,60 @@ function BoardWrite() {
     });
   };
 
-  const listPage = useNavigate();
-
-  function movePage() {
-    listPage("/board/list");
-  }
+  const pageBack = useNavigate();
 
   return (
     <div>
-      <React.Fragment>
-        <Typography variant="h6" gutterBottom>
-          Write
-        </Typography>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <TextField
-              required
-              id="writer"
-              name="writer"
-              onChange={onChange}
-              label="Required"
-            />
+      <Container>
+        <React.Fragment>
+          <Typography variant="h6" gutterBottom>
+            Write
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <TextField
+                required
+                id="writer"
+                name="writer"
+                onChange={onChange}
+                label="Required"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                id="title"
+                name="title"
+                onChange={onChange}
+                label="Required"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="content"
+                name="content"
+                label="Content"
+                multiline
+                onChange={onChange}
+                rows={4}
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <TextField
-              required
-              id="title"
-              name="title"
-              onChange={onChange}
-              label="Required"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="content"
-              name="content"
-              label="Content"
-              multiline
-              onChange={onChange}
-              rows={4}
-            />
-          </Grid>
-          <Grid item xs={12}>
+          <div className="bottom_button">
             <Button variant="contained" onClick={onClick}>
               OK
             </Button>
-            <Button variant="contained" onClick={movePage}>
+            <Button
+              variant="contained"
+              onClick={() => {
+                pageBack(-1);
+              }}
+            >
               Return
             </Button>
-          </Grid>
-        </Grid>
-      </React.Fragment>
+          </div>
+        </React.Fragment>
+      </Container>
     </div>
   );
 }

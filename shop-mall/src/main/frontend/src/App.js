@@ -4,25 +4,31 @@ import Footer from "./components/Footer";
 import Board from "./components/Board";
 import BoardWrite from "./components/BoardWrite";
 import * as React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import BoardDetail from "./components/BoardDetail";
+import { createTheme, ThemeProvider } from "@mui/material";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: "'Noto Sans KR', sans-serif",
+  },
+});
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <BrowserRouter>
+      <ThemeProvider theme={theme}>
         <Routes>
-          <Route path={"/board/list"} element={<Board />}></Route>
+          <Route path={"/"} element={<Board />}></Route>
           <Route path={"/board/write"} element={<BoardWrite />}></Route>
           <Route
             path={"/board/boardDetail/:seq"}
             element={<BoardDetail />}
           ></Route>
         </Routes>
-      </BrowserRouter>
-
-      <Footer />
+        <Footer />
+      </ThemeProvider>
     </div>
   );
 }

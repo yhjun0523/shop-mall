@@ -5,6 +5,8 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import "./Style.css";
+import { Container } from "@mui/system";
 
 function BoardDetail() {
   const { seq } = useParams();
@@ -29,11 +31,7 @@ function BoardDetail() {
     getBoardDetail();
   }, [seq]);
 
-  const listPage = useNavigate();
-
-  function movePage() {
-    listPage("/board/list");
-  }
+  const pageBack = useNavigate();
 
   const deletePage = async () => {
     await axios({
@@ -69,69 +67,70 @@ function BoardDetail() {
 
   return (
     <div>
-      <React.Fragment>
-        <Typography variant="h6" gutterBottom>
-          Write
-        </Typography>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <TextField
-              required
-              id="writer"
-              name="writer"
-              label="Writer"
-              multiline
-              defaultValue={board.writer}
-              // InputProps={{
-              //   readOnly: true,
-              // }}
-              variant="filled"
-              onChange={onChange}
-            />
+      <Container>
+        <React.Fragment>
+          <Typography variant="h6" gutterBottom>
+            Write
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <TextField
+                required
+                id="writer"
+                name="writer"
+                label="Writer"
+                multiline
+                defaultValue={board.writer}
+                variant="filled"
+                onChange={onChange}
+                InputLabelProps={{ shrink: true }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                id="title"
+                name="title"
+                label="Title"
+                multiline
+                defaultValue={board.title}
+                variant="filled"
+                onChange={onChange}
+                InputLabelProps={{ shrink: true }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="content"
+                name="content"
+                label="Content"
+                multiline
+                defaultValue={board.content}
+                variant="filled"
+                rows={4}
+                onChange={onChange}
+                InputLabelProps={{ shrink: true }}
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <TextField
-              required
-              id="title"
-              name="title"
-              label="Title"
-              multiline
-              defaultValue={board.title}
-              // InputProps={{
-              //   readOnly: true,
-              // }}
-              variant="filled"
-              onChange={onChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="content"
-              name="content"
-              label="Content"
-              multiline
-              defaultValue={board.content}
-              // InputProps={{
-              //   readOnly: true,
-              // }}
-              variant="filled"
-              rows={4}
-              onChange={onChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
+          <div className="bottom_button">
             <Button variant="contained" onClick={deletePage}>
               Delete
             </Button>
             <Button variant="contained" onClick={modifyPage}>
               Modify
             </Button>
-            <Button variant="contained" onClick={movePage}>
+            <Button
+              variant="contained"
+              onClick={() => {
+                pageBack(-1);
+              }}
+            >
               Return
             </Button>
-          </Grid>
-        </Grid>
-      </React.Fragment>
+          </div>
+        </React.Fragment>
+      </Container>
     </div>
   );
 }
