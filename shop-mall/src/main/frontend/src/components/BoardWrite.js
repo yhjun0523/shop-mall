@@ -7,6 +7,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Style.css";
 import { Container } from "@mui/system";
+import Paper from "@mui/material/Paper";
 
 function BoardWrite() {
   const [board, setBoard] = useState({
@@ -24,6 +25,7 @@ function BoardWrite() {
     }).then((res) => {
       console.log(res);
     });
+    movePage();
   };
 
   const onChange = (event) => {
@@ -35,56 +37,69 @@ function BoardWrite() {
 
   const pageBack = useNavigate();
 
+  function movePage() {
+    pageBack("/");
+  }
+
   return (
-    <div>
-      <Container>
+    <div className="board">
+      <Container component={Paper}>
         <React.Fragment>
           <Typography variant="h6" gutterBottom>
             Write
           </Typography>
           <Grid container spacing={3}>
-            <Grid item xs={12}>
+            <Grid item xs={3}></Grid>
+            <Grid item xs={6}>
               <TextField
                 required
                 id="writer"
                 name="writer"
                 onChange={onChange}
-                label="Required"
+                label="Writer"
+                fullWidth="true"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={3}></Grid>
+            <Grid item xs={3}></Grid>
+            <Grid item xs={6}>
               <TextField
                 required
                 id="title"
                 name="title"
                 onChange={onChange}
-                label="Required"
+                label="Title"
+                fullWidth="true"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={3}></Grid>
+            <Grid item xs={3}></Grid>
+            <Grid item xs={6}>
               <TextField
                 id="content"
                 name="content"
                 label="Content"
                 multiline
+                required
                 onChange={onChange}
-                rows={4}
+                rows={5}
+                fullWidth="true"
               />
             </Grid>
+            <Grid item xs={3}></Grid>
           </Grid>
-          <div className="bottom_button">
-            <Button variant="contained" onClick={onClick}>
-              OK
-            </Button>
-            <Button
-              variant="contained"
-              onClick={() => {
-                pageBack(-1);
-              }}
-            >
-              Return
-            </Button>
-          </div>
+          <Button variant="contained" onClick={onClick} sx={{ mx: 1, my: 2 }}>
+            OK
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ mx: 1, my: 2 }}
+            onClick={() => {
+              pageBack(-1);
+            }}
+          >
+            Return
+          </Button>
         </React.Fragment>
       </Container>
     </div>

@@ -7,6 +7,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import "./Style.css";
 import { Container } from "@mui/system";
+import Paper from "@mui/material/Paper";
 
 function BoardDetail() {
   const { seq } = useParams();
@@ -33,6 +34,10 @@ function BoardDetail() {
 
   const pageBack = useNavigate();
 
+  function movePage() {
+    pageBack("/");
+  }
+
   const deletePage = async () => {
     await axios({
       method: "delete",
@@ -40,6 +45,7 @@ function BoardDetail() {
     }).then((res) => {
       console.log(res);
     });
+    movePage();
   };
 
   const modifyPage = async () => {
@@ -56,6 +62,7 @@ function BoardDetail() {
     }).then((res) => {
       console.log(res);
     });
+    movePage();
   };
 
   const onChange = (event) => {
@@ -66,14 +73,15 @@ function BoardDetail() {
   };
 
   return (
-    <div>
-      <Container>
+    <div className="board">
+      <Container component={Paper}>
         <React.Fragment>
           <Typography variant="h6" gutterBottom>
-            Write
+            Read / Modify
           </Typography>
           <Grid container spacing={3}>
-            <Grid item xs={12}>
+            <Grid item xs={3}></Grid>
+            <Grid item xs={6}>
               <TextField
                 required
                 id="writer"
@@ -84,9 +92,12 @@ function BoardDetail() {
                 variant="filled"
                 onChange={onChange}
                 InputLabelProps={{ shrink: true }}
+                fullWidth="true"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={3}></Grid>
+            <Grid item xs={3}></Grid>
+            <Grid item xs={6}>
               <TextField
                 required
                 id="title"
@@ -97,9 +108,12 @@ function BoardDetail() {
                 variant="filled"
                 onChange={onChange}
                 InputLabelProps={{ shrink: true }}
+                fullWidth="true"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={3}></Grid>
+            <Grid item xs={3}></Grid>
+            <Grid item xs={6}>
               <TextField
                 id="content"
                 name="content"
@@ -107,28 +121,37 @@ function BoardDetail() {
                 multiline
                 defaultValue={board.content}
                 variant="filled"
-                rows={4}
+                rows={5}
                 onChange={onChange}
                 InputLabelProps={{ shrink: true }}
+                fullWidth="true"
               />
             </Grid>
+            <Grid item xs={3}></Grid>
           </Grid>
-          <div className="bottom_button">
-            <Button variant="contained" onClick={deletePage}>
-              Delete
-            </Button>
-            <Button variant="contained" onClick={modifyPage}>
-              Modify
-            </Button>
-            <Button
-              variant="contained"
-              onClick={() => {
-                pageBack(-1);
-              }}
-            >
-              Return
-            </Button>
-          </div>
+          <Button
+            variant="contained"
+            onClick={deletePage}
+            sx={{ mx: 1, my: 2 }}
+          >
+            Delete
+          </Button>
+          <Button
+            variant="contained"
+            onClick={modifyPage}
+            sx={{ mx: 1, my: 2 }}
+          >
+            Modify
+          </Button>
+          <Button
+            variant="contained"
+            onClick={() => {
+              pageBack(-1);
+            }}
+            sx={{ mx: 1, my: 2 }}
+          >
+            Return
+          </Button>
         </React.Fragment>
       </Container>
     </div>

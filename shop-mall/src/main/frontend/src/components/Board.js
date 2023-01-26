@@ -4,7 +4,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Link, useNavigate } from "react-router-dom";
@@ -91,7 +91,27 @@ function TablePaginationActions(props) {
   );
 }
 
-function Board(props) {
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
+
+function Board() {
   const [board, setBoard] = useState(null);
 
   const [page, setPage] = React.useState(0);
@@ -118,40 +138,30 @@ function Board(props) {
     writePage("/board/write");
   }
 
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
-    "&:last-child td, &:last-child th": {
-      border: 0,
-    },
-  }));
-
   if (board) {
     return (
       <div className="board">
-        <Container component={Paper}>
+        <Container component={Paper} sx={{ paddingTop: 3 }}>
           <React.Fragment>
             {/* <Title>Recent Orders</Title> */}
-            <Table size="small">
+            <Table size="medium">
               <TableHead>
                 <TableRow>
-                  <TableCell align="center" style={{ width: "10%" }}>
+                  <StyledTableCell align="center" style={{ width: "10%" }}>
                     Seq
-                  </TableCell>
-                  <TableCell align="center" style={{ width: "10%" }}>
+                  </StyledTableCell>
+                  <StyledTableCell align="center" style={{ width: "10%" }}>
                     Writer
-                  </TableCell>
-                  <TableCell align="center" style={{ width: "50%" }}>
+                  </StyledTableCell>
+                  <StyledTableCell align="center" style={{ width: "50%" }}>
                     Title
-                  </TableCell>
-                  <TableCell align="center" style={{ width: "20%" }}>
+                  </StyledTableCell>
+                  <StyledTableCell align="center" style={{ width: "20%" }}>
                     RegDate
-                  </TableCell>
-                  <TableCell align="center" style={{ width: "10%" }}>
+                  </StyledTableCell>
+                  <StyledTableCell align="center" style={{ width: "10%" }}>
                     Count
-                  </TableCell>
+                  </StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -201,7 +211,7 @@ function Board(props) {
                 </TableRow>
               </TableFooter>
             </Table>
-            <box >
+            <box>
               <Button variant="contained" onClick={movePage} sx={{ my: 2 }}>
                 Write
               </Button>
