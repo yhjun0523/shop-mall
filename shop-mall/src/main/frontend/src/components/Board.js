@@ -211,11 +211,11 @@ function Board() {
                 </TableRow>
               </TableFooter>
             </Table>
-            <box>
+            <Box>
               <Button variant="contained" onClick={movePage} sx={{ my: 2 }}>
                 Write
               </Button>
-            </box>
+            </Box>
           </React.Fragment>
           {console.log(board)}
         </Container>

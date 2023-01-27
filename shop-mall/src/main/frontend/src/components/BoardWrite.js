@@ -28,6 +28,8 @@ function BoardWrite() {
     movePage();
   };
 
+  const session = sessionStorage.getItem("name");
+
   const onChange = (event) => {
     setBoard({
       ...board,
@@ -55,9 +57,12 @@ function BoardWrite() {
                 required
                 id="writer"
                 name="writer"
+                defaultValue={session}
                 onChange={onChange}
                 label="Writer"
-                fullWidth="true"
+                fullWidth={true}
+                inputProps={{ readOnly: true }}
+                variant="filled"
               />
             </Grid>
             <Grid item xs={3}></Grid>
@@ -69,7 +74,7 @@ function BoardWrite() {
                 name="title"
                 onChange={onChange}
                 label="Title"
-                fullWidth="true"
+                fullWidth={true}
               />
             </Grid>
             <Grid item xs={3}></Grid>
@@ -83,7 +88,7 @@ function BoardWrite() {
                 required
                 onChange={onChange}
                 rows={5}
-                fullWidth="true"
+                fullWidth={true}
               />
             </Grid>
             <Grid item xs={3}></Grid>

@@ -37,16 +37,19 @@
                DATE_FORMAT(REGDATE, '%Y-%m-%d') REGDATE,
                CNT
         FROM BOARD
-        WHERE SEQ = #{seq}
+        WHERE 1=1
+        AND SEQ = #{seq}
     </select>
 	<delete id="deleteBoard">
         DELETE FROM BOARD
-        WHERE SEQ = #{seq}
+        WHERE 1=1
+        AND SEQ = #{seq}
     </delete>
 	<update id="updateBoard">
 		UPDATE BOARD
 		SET TITLE = #{title},
 		    CONTENT = #{content}
-		WHERE SEQ = #{seq}
+		WHERE 1=1
+		AND SEQ = #{seq}
 	</update>
 </mapper>

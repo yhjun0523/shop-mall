@@ -92,7 +92,7 @@ function BoardDetail() {
                 variant="filled"
                 onChange={onChange}
                 InputLabelProps={{ shrink: true }}
-                fullWidth="true"
+                fullWidth={true}
               />
             </Grid>
             <Grid item xs={3}></Grid>
@@ -108,7 +108,7 @@ function BoardDetail() {
                 variant="filled"
                 onChange={onChange}
                 InputLabelProps={{ shrink: true }}
-                fullWidth="true"
+                fullWidth={true}
               />
             </Grid>
             <Grid item xs={3}></Grid>
@@ -124,7 +124,7 @@ function BoardDetail() {
                 rows={5}
                 onChange={onChange}
                 InputLabelProps={{ shrink: true }}
-                fullWidth="true"
+                fullWidth={true}
               />
             </Grid>
             <Grid item xs={3}></Grid>
