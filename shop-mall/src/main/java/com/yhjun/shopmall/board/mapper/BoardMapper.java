@@ -2,22 +2,20 @@ package com.yhjun.shopmall.board.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.yhjun.shopmall.board.vo.BoardVO;
+import com.yhjun.shopmall.board.entity.BoardEntity;
 
 @Repository
-@Mapper
 public interface BoardMapper {
 
-    List<BoardVO> getBoardList();
+    List<BoardEntity> getBoardList();
 
-    void setBoard(BoardVO vo);
+    void setBoard(BoardEntity vo);
 
-    BoardVO getBoardDetail(BoardVO vo);
+    BoardEntity getBoardDetail(BoardEntity vo);
 
-    void deleteBoard(BoardVO vo);
+    void deleteBoard(BoardEntity vo);
 
-    void updateBoard(BoardVO vo);
+    void updateBoard(BoardEntity vo);
 }

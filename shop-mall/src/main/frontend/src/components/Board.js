@@ -180,7 +180,7 @@ function Board() {
                         {boardList.title}
                       </Link>
                     </TableCell>
-                    <TableCell align="center">{boardList.regDate}</TableCell>
+                    <TableCell align="center">{boardList.regdate}</TableCell>
                     <TableCell align="center">{boardList.cnt}</TableCell>
                   </StyledTableRow>
                 ))}

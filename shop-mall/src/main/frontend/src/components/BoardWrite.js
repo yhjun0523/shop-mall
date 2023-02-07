@@ -61,7 +61,7 @@ function BoardWrite() {
                 onChange={onChange}
                 label="Writer"
                 fullWidth={true}
-                inputProps={{ readOnly: true }}
+                // inputProps={{ readOnly: true }}
                 variant="filled"
               />
             </Grid>

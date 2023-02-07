@@ -9,12 +9,12 @@ import com.yhjun.shopmall.member.vo.MemberVO;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-    @Autowired
-    private MemberMapper memberMapper;
-
-    @Override
-    public MemberVO login(MemberVO vo) {
-        return memberMapper.login(vo);
-    }
+//    @Autowired
+//    private MemberMapper memberMapper;
+//
+//    @Override
+//    public MemberVO login(MemberVO vo) {
+//        return memberMapper.login(vo);
+//    }
 
 }

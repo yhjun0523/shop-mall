@@ -1,16 +1,18 @@
 package com.yhjun.shopmall.board.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yhjun.shopmall.board.entity.BoardEntity;
 import com.yhjun.shopmall.board.service.BoardService;
-import com.yhjun.shopmall.board.vo.BoardVO;
 
 @RestController
 public class BoardController {
@@ -19,27 +21,31 @@ public class BoardController {
     private BoardService boardService;
 
     @GetMapping("/board/read.do")
-    public List<BoardVO> getBoardList() {
-        return boardService.getBoardList();
+    public ResponseEntity<List<BoardEntity>> getBoardList() {
+        List<BoardEntity> board = boardService.findAll();
+        return new ResponseEntity<List<BoardEntity>>(board, HttpStatus.OK);
+    }
+
+    @GetMapping("/board/readDetail.do/{seq}")
+    public ResponseEntity<BoardEntity> getBoardDetail(@PathVariable("seq") int seq) {
+        Optional<BoardEntity> board = boardService.findById(seq);
+        return new ResponseEntity<BoardEntity>(board.get(), HttpStatus.OK);
     }
 
     @PostMapping("/board/write.do")
-    public void setBoard(BoardVO vo) {
-        boardService.setBoard(vo);
+    public ResponseEntity<BoardEntity> setBoard(BoardEntity entity) {
+        boardService.save(entity);
+        return new ResponseEntity<BoardEntity>(boardService.save(entity), HttpStatus.OK);
+        
     }
 
-    @PostMapping("/board/readDetail.do/{seq}")
-    public BoardVO getBoardDetail(BoardVO vo) {
-        return boardService.getBoardDetail(vo);
-    }
+//    @DeleteMapping("/board/delete.do/{seq}")
+//    public void deleteBoard(BoardEntity vo) {
+//        boardService.deleteBoard(vo);
+//    }
 
-    @DeleteMapping("/board/delete.do/{seq}")
-    public void deleteBoard(BoardVO vo) {
-        boardService.deleteBoard(vo);
-    }
-
-    @PutMapping("/board/update.do/")
-    public void updateBoard(BoardVO vo) {
-        boardService.updateBoard(vo);
-    }
+//    @PutMapping("/board/update.do/")
+//    public void updateBoard(BoardEntity vo) {
+//        boardService.updateBoard(vo);
+//    }
 }

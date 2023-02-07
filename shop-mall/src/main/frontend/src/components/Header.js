@@ -51,7 +51,8 @@ function Header() {
     <div className="header">
       <header>
         <Grid container spacing={3}>
-          <Grid item xs={10}>
+          <Grid item xs={2} />
+          <Grid item xs={8}>
             <h1>
               <Link to={"/"} style={{ textDecoration: "none" }}>
                 Board

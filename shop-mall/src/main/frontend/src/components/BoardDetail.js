@@ -21,7 +21,7 @@ function BoardDetail() {
   useEffect(() => {
     async function getBoardDetail() {
       await axios({
-        method: "post",
+        method: "get",
         url: `/board/readDetail.do/${seq}`,
       }).then((res) => {
         console.log(res);
@@ -152,6 +152,11 @@ function BoardDetail() {
           >
             Return
           </Button>
+          <form action="/upload" method="post" enctype="multipart/form-data">
+            <h4>단일 파일 업로드</h4>
+            <input type="file" name="file"></input>
+            <input type="submit" />
+          </form>
         </React.Fragment>
       </Container>
     </div>

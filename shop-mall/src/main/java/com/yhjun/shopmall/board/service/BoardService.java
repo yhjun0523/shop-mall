@@ -1,17 +1,20 @@
 package com.yhjun.shopmall.board.service;
 
 import java.util.List;
+import java.util.Optional;
 
-import com.yhjun.shopmall.board.vo.BoardVO;
+import com.yhjun.shopmall.board.entity.BoardEntity;
 
 public interface BoardService {
-    public List<BoardVO> getBoardList();
+
+    public List<BoardEntity> findAll();
+
+    public Optional<BoardEntity> findById(int seq);
+
+    public BoardEntity save(BoardEntity entity);
     
-    public void setBoard(BoardVO vo);
-    
-    public BoardVO getBoardDetail(BoardVO vo);
-    
-    public void deleteBoard(BoardVO vo);
-    
-    public void updateBoard(BoardVO vo);
+//    public void deleteBoard(BoardEntity vo);
+//    
+//    public void updateBoard(BoardEntity vo);
+
 }

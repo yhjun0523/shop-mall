@@ -1,41 +1,48 @@
 package com.yhjun.shopmall.board.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.yhjun.shopmall.board.mapper.BoardMapper;
-import com.yhjun.shopmall.board.vo.BoardVO;
+import com.yhjun.shopmall.board.entity.BoardEntity;
+import com.yhjun.shopmall.board.entity.BoardRepository;
 
 @Service
 public class BoardServiceImpl implements BoardService {
 
     @Autowired
-    private BoardMapper boardMapper;
+    private BoardRepository boardRepository;
 
     @Override
-    public List<BoardVO> getBoardList() {
-        return boardMapper.getBoardList();
+    public List<BoardEntity> findAll() {
+        List<BoardEntity> boardList = new ArrayList<>();
+        boardRepository.findAll(Sort.by(Sort.Direction.DESC, "seq")).forEach(e -> boardList.add(e));
+        return boardList;
     }
-
+    
     @Override
-    public void setBoard(BoardVO vo) {
-        boardMapper.setBoard(vo);
+    public Optional<BoardEntity> findById(int seq) {
+        Optional<BoardEntity> board = boardRepository.findById(seq);
+        return board;
     }
-
+    
     @Override
-    public BoardVO getBoardDetail(BoardVO vo) {
-        return boardMapper.getBoardDetail(vo);
+    public BoardEntity save(BoardEntity entity) {
+        boardRepository.save(entity);
+        return entity;
     }
-
-    @Override
-    public void deleteBoard(BoardVO vo) {
-        boardMapper.deleteBoard(vo);
-    }
-
-    @Override
-    public void updateBoard(BoardVO vo) {
-        boardMapper.updateBoard(vo);
-    }
+//
+//    @Override
+//    public void deleteBoard(BoardEntity vo) {
+//        boardMapper.deleteBoard(vo);
+//    }
+//
+//    @Override
+//    public void updateBoard(BoardEntity vo) {
+//        boardMapper.updateBoard(vo);
+//    }
 }
