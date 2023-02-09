@@ -16,6 +16,7 @@ function BoardDetail() {
     writer: "",
     title: "",
     content: "",
+    regdate: "",
   });
 
   useEffect(() => {
@@ -50,14 +51,14 @@ function BoardDetail() {
 
   const modifyPage = async () => {
     const formData = new FormData();
-    formData.append("seq", seq);
     formData.append("title", board.title);
     formData.append("writer", board.writer);
     formData.append("content", board.content);
+    formData.append("regdate", board.regdate);
 
     await axios({
       method: "put",
-      url: "/board/update.do/",
+      url: `/board/update.do/${seq}`,
       data: formData,
     }).then((res) => {
       console.log(res);

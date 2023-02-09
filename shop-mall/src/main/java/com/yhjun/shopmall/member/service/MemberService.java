@@ -1,7 +1,9 @@
 package com.yhjun.shopmall.member.service;
 
-import com.yhjun.shopmall.member.vo.MemberVO;
+import java.util.Optional;
+
+import com.yhjun.shopmall.member.entity.MemberEntity;
 
 public interface MemberService {
-//    public MemberVO login(MemberVO vo);
+    public Optional<MemberEntity> findByIdAndPw(String id, String pw);
 }

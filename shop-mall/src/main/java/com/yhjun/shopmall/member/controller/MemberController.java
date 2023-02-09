@@ -1,22 +1,28 @@
 package com.yhjun.shopmall.member.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yhjun.shopmall.member.entity.MemberEntity;
 import com.yhjun.shopmall.member.service.MemberService;
-import com.yhjun.shopmall.member.vo.MemberVO;
-
-import jakarta.servlet.http.HttpSession;
 
 @RestController
 public class MemberController {
 
-//    @Autowired
-//    MemberService memberService;
-//
-//    @PostMapping("/member/login.do")
+    @Autowired
+    private MemberService memberService;
+
+    @PostMapping("/member/login.do")
+    public ResponseEntity<MemberEntity> login(String id, String pw) {
+        Optional<MemberEntity> member = memberService.findByIdAndPw(id, pw);
+        return new ResponseEntity<MemberEntity>(member.get(), HttpStatus.OK);
+    }
+    
 //    public MemberVO login(@RequestParam("id") String id, @RequestParam("pw") String pw, MemberVO vo,
 //            HttpSession session) {
 //

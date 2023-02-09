@@ -12,9 +12,9 @@ public interface BoardService {
     public Optional<BoardEntity> findById(int seq);
 
     public BoardEntity save(BoardEntity entity);
-    
-//    public void deleteBoard(BoardEntity vo);
-//    
-//    public void updateBoard(BoardEntity vo);
+
+    public void deleteById(int seq);
+
+    public void updateById(int seq, BoardEntity entity);
 
 }

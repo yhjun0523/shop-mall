@@ -3,6 +3,7 @@ package com.yhjun.shopmall.board.entity;
 import java.time.LocalDate;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -13,14 +14,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Getter
+@Data
 @NoArgsConstructor
 @Entity
 @Table(name = "board")
 @EntityListeners(AuditingEntityListener.class)
+@DynamicUpdate
 public class BoardEntity {
 
     @Id

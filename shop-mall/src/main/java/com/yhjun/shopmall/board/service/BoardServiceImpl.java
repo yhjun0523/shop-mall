@@ -23,26 +23,35 @@ public class BoardServiceImpl implements BoardService {
         boardRepository.findAll(Sort.by(Sort.Direction.DESC, "seq")).forEach(e -> boardList.add(e));
         return boardList;
     }
-    
+
     @Override
     public Optional<BoardEntity> findById(int seq) {
         Optional<BoardEntity> board = boardRepository.findById(seq);
         return board;
     }
-    
+
     @Override
     public BoardEntity save(BoardEntity entity) {
         boardRepository.save(entity);
         return entity;
     }
-//
-//    @Override
-//    public void deleteBoard(BoardEntity vo) {
-//        boardMapper.deleteBoard(vo);
-//    }
-//
-//    @Override
-//    public void updateBoard(BoardEntity vo) {
-//        boardMapper.updateBoard(vo);
-//    }
+
+    @Override
+    public void deleteById(int seq) {
+        boardRepository.deleteById(seq);
+    }
+
+    @Override
+    public void updateById(int seq, BoardEntity entity) {
+        
+        Optional<BoardEntity> e = boardRepository.findById(seq);
+
+        if (e.isPresent()) {
+            e.get().setSeq(entity.getSeq());
+            e.get().setTitle(entity.getTitle());
+            e.get().setContent(entity.getContent());
+            e.get().setRegdate(entity.getRegdate());
+            boardRepository.save(entity);
+        }
+    }
 }
