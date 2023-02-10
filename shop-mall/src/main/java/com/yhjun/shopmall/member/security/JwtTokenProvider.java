@@ -15,6 +15,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import com.yhjun.shopmall.member.entity.TokenInfoVO;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -37,7 +39,7 @@ public class JwtTokenProvider {
     }
 
     // 유저 정보를 가지고 AccessToken, RefreshToken 을 생성하는 메서드
-    public TokenInfo generateToken(Authentication authentication) {
+    public TokenInfoVO generateToken(Authentication authentication) {
         // 권한 가져오기
         String authorities = authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
@@ -49,10 +51,10 @@ public class JwtTokenProvider {
                 .setExpiration(accessTokenExpiresIn).signWith(key, SignatureAlgorithm.HS256).compact();
 
         // Refresh Token 생성
-        String refreshToken = Jwts.builder().setExpiration(new Date(now + 86400000))
+        String refreshToken = Jwts.builder().setExpiration(new Date(now + (1000 * 60 * 30)))
                 .signWith(key, SignatureAlgorithm.HS256).compact();
 
-        return TokenInfo.builder().grantType("Bearer").accessToken(accessToken).refreshToken(refreshToken).build();
+        return TokenInfoVO.builder().grantType("Bearer").accessToken(accessToken).refreshToken(refreshToken).build();
     }
 
     // JWT 토큰을 복호화하여 토큰에 들어있는 정보를 꺼내는 메서드

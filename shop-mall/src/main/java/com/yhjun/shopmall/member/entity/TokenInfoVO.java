@@ -1,4 +1,4 @@
-package com.yhjun.shopmall.member.security;
+package com.yhjun.shopmall.member.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,7 +7,7 @@ import lombok.Data;
 @Builder
 @Data
 @AllArgsConstructor
-public class TokenInfo {
+public class TokenInfoVO {
 
     private String grantType;
 
