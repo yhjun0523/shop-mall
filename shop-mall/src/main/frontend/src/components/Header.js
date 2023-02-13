@@ -6,7 +6,7 @@ import "./Style.css";
 
 function Header() {
   const Login = () => {
-    const session = sessionStorage.getItem("name");
+    const session = sessionStorage.getItem("accessToken");
 
     if (session === undefined || session === null) {
       return (

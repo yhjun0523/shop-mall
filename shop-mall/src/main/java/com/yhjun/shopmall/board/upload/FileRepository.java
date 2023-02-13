@@ -1,8 +1,7 @@
 package com.yhjun.shopmall.board.upload;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface FileRepository {
-//    FileEntity save(FileEntity vo);
+public interface FileRepository extends JpaRepository<FileEntity, Long> {
+
 }

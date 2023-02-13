@@ -45,15 +45,15 @@ function Login() {
     await axios({
       method: "post",
       url: "/member/login.do",
-      data: formData,
+      data: member,
     }).then((res) => {
       console.log(res);
 
-      if (res.data.name === undefined) {
+      if (res.data.accessToken === undefined) {
         window.alert("로그인 실패.");
       } else {
         window.alert("로그인 성공.");
-        sessionStorage.setItem("name", res.data.name);
+        sessionStorage.setItem("accessToken", res.data.accessToken);
         movePage();
       }
     });

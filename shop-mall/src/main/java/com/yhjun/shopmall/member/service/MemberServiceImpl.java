@@ -1,16 +1,11 @@
 package com.yhjun.shopmall.member.service;
 
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yhjun.shopmall.member.entity.Member;
-import com.yhjun.shopmall.member.entity.MemberRepository;
 import com.yhjun.shopmall.member.entity.TokenInfoVO;
 import com.yhjun.shopmall.member.security.JwtTokenProvider;
 
@@ -20,15 +15,6 @@ import lombok.RequiredArgsConstructor;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
-
-    @Autowired
-    private MemberRepository memberRepository;
-
-    @Override
-    public Optional<Member> findByIdAndPw(String id, String pw) {
-        Optional<Member> member = memberRepository.findByIdAndPw(id, pw);
-        return member;
-    }
 
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final JwtTokenProvider jwtTokenProvider;
